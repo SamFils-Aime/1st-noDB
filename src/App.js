@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import axios from "axios";
+import RaveEvent from "./components/RaveEvent";
+import InputCard from "./components/InputCard"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+    };
+  }
+
+  // component did mount here essentially take all my data as soon as the pages loads.
+  // which i will pass back to my state with this.set state.
+
+  componentDidMount() {
+    axios
+      .get("/api/riot")
+      .then(res => this.setState({ data: res.data }))
+      .catch(err => console.log(err));
+  }
+    // let {id,city,image, date, rsvp} = this.state.data
+    
+    render() {
+      const {data}  = this.state
+
+    return (
+      <div>
+        <aside>
+        <RaveEvent data={data}></RaveEvent>
+        <InputCard></InputCard>
+       </aside>
+      </div>
+    );
+  }
 }
 
 export default App;
