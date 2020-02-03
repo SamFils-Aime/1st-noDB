@@ -14,10 +14,11 @@ export default class InputCard extends React.Component {
   };
 
   render() {
-
     return (
       <div>
-        {this.state.togg && ( <PostEvent></PostEvent>)}
+        {this.state.togg && <PostEvent  
+        raveId={this.props.raveId}
+        updateList={this.props.updateList}/>}
         <button onClick= {this.toggleExpand}>newEvent</button>
       </div>
     );

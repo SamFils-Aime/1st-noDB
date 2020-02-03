@@ -1,18 +1,15 @@
 import React from "react";
 import axios from "axios";
 import RaveEvent from "./components/RaveEvent";
-import InputCard from "./components/InputCard"
+import InputCard from "./components/InputCard";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      data: []
     };
   }
-
-  // component did mount here essentially take all my data as soon as the pages loads.
-  // which i will pass back to my state with this.set state.
 
   componentDidMount() {
     axios
@@ -20,17 +17,32 @@ class App extends React.Component {
       .then(res => this.setState({ data: res.data }))
       .catch(err => console.log(err));
   }
-    // let {id,city,image, date, rsvp} = this.state.data
-    
-    render() {
-      const {data}  = this.state
+
+  updateList = UPDATE => {
+    this.setState({ data: UPDATE });
+  };
+
+  raveId = data => {
+    return data;
+  };
+
+  render() {
+    const idLength = this.state.data.length;
+    const { data } = this.state;
 
     return (
       <div>
         <aside>
-        <RaveEvent data={data}></RaveEvent>
-        <InputCard></InputCard>
-       </aside>
+          <RaveEvent
+            nameEvent={data.nameEvent}
+            data={data}
+            updateList={this.updateList}
+          />
+          <InputCard addEvent={this.addEvent} 
+          raveId={this.raveId(idLength)} 
+          updateList={this.updateList}
+          />
+        </aside>
       </div>
     );
   }
