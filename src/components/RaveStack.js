@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import UpdateEvent from "./UpdateEvent";
+import { Paper, Box, Button } from "@material-ui/core";
 
 export default class RaveStack extends React.Component {
   constructor() {
@@ -19,27 +20,66 @@ export default class RaveStack extends React.Component {
       .delete(`/api/riot/${this.props.data.id}`)
       .then(res => this.props.updateList(res.data))
       .catch(err => console.log(err));
+    console.log(this.props.data.id);
   };
 
   render() {
-    const { imgURL, eventName, city, date, info,id} = this.props.data;
-
+    const { imgURL, eventName, city, date, info } = this.props.data;
     return (
       <section key={this.props.key}>
-        <img src={imgURL} alt="events" />
-        <h1>{eventName}</h1>
-        <h2>{city}</h2>
-        <h2>{date}</h2>
-        <h2>{info}</h2>
-        <button onClick={this.clickDelete}> delete event: {eventName}</button>
+        <Paper square="true" elevation={20}>
+          <Box display="flex" alignContent="center">
+            <img src={imgURL} alt="events" />
+          </Box>
+        </Paper>
+
+        <Paper elevation={3}>
+          <Box textAlign="center">
+            <Box
+              lineHeight={4}
+              fontFamily="Roboto, Helvetica,Arial, sans-serif"
+              fontWeight="fontWeightBold"
+            >
+              {eventName}
+            </Box>
+            <Box
+              lineHeight={4}
+              fontFamily="Roboto, Helvetica,Arial, sans-serif"
+              fontWeight="fontWeightMedium"
+            >
+              {city}
+            </Box>
+            <Box
+              lineHeight={4}
+              fontFamily="Roboto, Helvetica,Arial, sans-serif"
+              fontWeight="fontWeightMedium"
+            >
+              {date}
+            </Box>
+            <Box
+              lineHeight={4}
+              fontFamily="Roboto, Helvetica,Arial, sans-serif"
+              fontStyle="oblique"
+              fontWeight="fontWeightLight"
+            >
+              {info}
+            </Box>
+          </Box>
+        </Paper>
+        <Button ariant="outlined" color="secondary" onClick={this.clickDelete}>
+          {" "}
+          delete event: {eventName}
+        </Button>
         {this.state.togg && (
           <UpdateEvent
+            raveID={this.props.raveID}
             data={this.props.data}
             updateList={this.props.updateList}
           />
         )}
-
-        <button onClick={this.toggleExpand}>edit</button>
+        <Button ariant="outlined" color="primary" onClick={this.toggleExpand}>
+          edit
+        </Button>
       </section>
     );
   }

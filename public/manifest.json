@@ -1,19 +1,19 @@
 {
-  "short_name": "React App",
+  "short_name": "SAM MEDIOCRE WEBSITE",
   "name": "Create React App Sample",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "iconfinder_api_4171930.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
+      "src": "iconfinder_196_Api_app_coding_developer_software_app_development_4178977 (1).png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "icons8-edit-480.png",
       "type": "image/png",
       "sizes": "512x512"
     }

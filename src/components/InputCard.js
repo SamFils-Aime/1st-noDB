@@ -1,5 +1,6 @@
 import React from "react";
 import PostEvent from "./PostEvent";
+import { Button } from "@material-ui/core";
 
 export default class InputCard extends React.Component {
   constructor() {
@@ -16,10 +17,22 @@ export default class InputCard extends React.Component {
   render() {
     return (
       <div>
-        {this.state.togg && <PostEvent  
-        raveId={this.props.raveId}
-        updateList={this.props.updateList}/>}
-        <button onClick= {this.toggleExpand}>newEvent</button>
+        {this.state.togg && (
+          <PostEvent
+            raveId={this.props.raveId}
+            updateList={this.props.updateList}
+          />
+        )}
+
+        <Button
+          variant="contained"
+          color="secondary"
+          size="large"
+          position="sticky"
+          onClick={this.toggleExpand}
+        >
+          newEvent
+        </Button>
       </div>
     );
   }
